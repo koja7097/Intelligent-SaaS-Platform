@@ -202,3 +202,110 @@ ul {
   font-size: 0.85rem;
   backdrop-filter: blur(10px);
 }
+
+/* Cinematic tab transitions */
+.tab-content {
+  will-change: transform, opacity, filter;
+}
+
+.tab-content img {
+  will-change: transform;
+}
+
+
+
+
+
+
+/* wo */
+.workflow {
+  margin: 8rem auto;
+  text-align: center;
+}
+
+.workflow-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2.5rem;
+  margin-top: 4rem;
+}
+
+.workflow-step {
+  padding: 2.5rem;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.workflow-step span {
+  font-size: 2rem;
+  opacity: 0.4;
+}
+
+.workflow-step:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+}
+
+
+
+.trust {
+  margin: 6rem auto;
+  text-align: center;
+}
+
+.logos {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  opacity: 0.6;
+  margin-top: 2rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.cta {
+  margin: 8rem 0;
+  padding: 5rem 0;
+  background: radial-gradient(circle at top, rgba(255,255,255,0.06), transparent);
+  text-align: center;
+}
+
+.btn-lg {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.9rem 2.2rem;
+  border-radius: 999px;
+  background: white;
+  color: black;
+  font-weight: 600;
+}
+
+
+/* Solution Page styling */
+
+.solutions-hero {
+  margin: 6rem auto;
+  text-align: center;
+}
+
+.solutions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2.5rem;
+  margin: 5rem auto;
+}
+
+.solution-card {
+  padding: 2.8rem;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: transform 0.4s ease;
+}
+
+.solution-card:hover {
+  transform: translateY(-10px);
+}
