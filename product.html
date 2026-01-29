@@ -3,38 +3,146 @@
 <head>
   <meta charset="UTF-8">
   <title>NOVA Product</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="css/product.css">
 </head>
 <body>
 
-<header class="nav">...</header>
+<header class="nav">
+  <div class="container nav-inner">
+    <div class="logo">HOVA</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="product.html" class="active">Product</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="#" class="btn-sm">Request demo</a>
+    </nav>
+  </div>
+</header>
+
+<!-- 3D BACKGROUND -->
+<canvas id="three-bg"></canvas>
 
 <section class="product-tabs container">
-  <h1>One platform. Total clarity.</h1>
+  <h1 class="reveal">One platform. Total clarity.</h1>
+  <p class="subtitle reveal">
+    Everything your SaaS team needs to monitor, automate, and predict — in one calm interface.
+  </p>
 
-  <div class="tabs">
+  <div class="tabs reveal">
     <button class="tab active" data-tab="monitor">Monitoring</button>
     <button class="tab" data-tab="automation">Automation</button>
     <button class="tab" data-tab="insights">Insights</button>
   </div>
 
-  <div class="tab-content active" id="monitor">
-    <h3>Real‑time Monitoring</h3>
-    <p>Instant visibility into system health, uptime and latency.</p>
-    <img src="assets/dashboard.png">
-  </div>
+  <div class="tab-panels">
+    <div class="tab-content active" id="monitor">
+      <div class="content-grid">
+        <div>
+          <h3>Real-time Monitoring</h3>
+          <p>
+            Instant visibility into system health, uptime, latency, and incidents —
+            all updated live without noise.
+          </p>
+          <ul>
+            <li>✔ Live metrics</li>
+            <li>✔ SLA tracking</li>
+            <li>✔ Incident timelines</li>
+          </ul>
+        </div>
+        <img src="assets/dashboard.jpg" alt="Monitoring dashboard" />
+      </div>
+    </div>
 
-  <div class="tab-content" id="automation">
-    <h3>Smart Automation</h3>
-    <p>Trigger workflows automatically when thresholds are crossed.</p>
-  </div>
+    <div class="tab-content" id="automation">
+      <div class="content-grid">
+        <div>
+          <h3>Smart Automation</h3>
+          <p>
+            Define workflows once and let NOVA respond automatically when
+            thresholds are crossed.
+          </p>
+          <ul>
+            <li>✔ Auto-remediation</li>
+            <li>✔ Webhooks & integrations</li>
+            <li>✔ No-code rules</li>
+          </ul>
+        </div>
+        <img src="assets/automation.png" alt="Automation workflows" />
+      </div>
+    </div>
 
-  <div class="tab-content" id="insights">
-    <h3>Predictive Insights</h3>
-    <p>AI‑powered analytics that surface risks before they happen.</p>
+    <div class="tab-content" id="insights">
+      <div class="content-grid">
+        <div>
+          <h3>Predictive Insights</h3>
+          <p>
+            AI-powered analytics surface anomalies and risks before
+            they affect customers.
+          </p>
+          <ul>
+            <li>✔ Anomaly detection</li>
+            <li>✔ Forecasting</li>
+            <li>✔ Trend analysis</li>
+          </ul>
+        </div>
+        <img src="assets/hero.jpg" alt="Predictive analytics" />
+      </div>
+    </div>
   </div>
 </section>
 
+
+<section class="highlights container">
+  <h2>Why teams choose NOVA</h2>
+
+  <div class="highlight-grid">
+    <div class="highlight-card">
+      <span>⚡</span>
+      <h4>Instant signal</h4>
+      <p>No noise. Just the metrics and events that matter.</p>
+    </div>
+
+    <div class="highlight-card">
+      <span>🧠</span>
+      <h4>Predictive by default</h4>
+      <p>See incidents before customers feel them.</p>
+    </div>
+
+    <div class="highlight-card">
+      <span>🔗</span>
+      <h4>Plug & play</h4>
+      <p>Connect your stack in minutes, not weeks.</p>
+    </div>
+
+    <div class="highlight-card">
+      <span>🔒</span>
+      <h4>Enterprise-ready</h4>
+      <p>Security, compliance, and reliability built in.</p>
+    </div>
+  </div>
+</section>
+
+<div class="command">
+  <span>⌘ K</span> Quick actions
+</div>
+
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <span>© 2026 NOVA Inc.</span>
+    <span>Privacy · Security · Terms</span>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 <script src="js/tabs.js"></script>
+<script src="js/three-bg.js"></script>
+<script src="js/reveal.js"></script>
+<script src="js/gsap-animations.js"></script>
 </body>
 </html>
