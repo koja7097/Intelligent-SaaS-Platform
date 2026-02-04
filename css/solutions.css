@@ -1,0 +1,142 @@
+/* =========================
+   SOLUTIONS PAGE
+========================= */
+
+.solutions-hero {
+  text-align: center;
+  padding-top: 6rem;
+  padding-bottom: 4rem;
+}
+
+.solutions-hero h1 {
+  font-size: clamp(2.4rem, 5vw, 3.2rem);
+}
+
+/* SOLUTION CARDS */
+.solutions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+@media (max-width: 900px) {
+  .solutions-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.solution-card {
+  position: relative;
+  background: rgba(18,21,32,0.7);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 2.5rem;
+  backdrop-filter: blur(16px);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  overflow: hidden;
+}
+
+.solution-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(79,70,229,0.15), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.solution-card:hover::before {
+  opacity: 1;
+}
+
+.solution-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+}
+
+.solution-card h3 {
+  font-size: 1.6rem;
+}
+
+.solution-card p {
+  color: var(--muted);
+  margin: 0.8rem 0 1.2rem;
+}
+
+.solution-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.solution-card li {
+  margin-bottom: 0.6rem;
+}
+
+/* FEATURE STRIP */
+.solution-features {
+  margin-top: 6rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .solution-features {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 500px) {
+  .solution-features {
+    grid-template-columns: 1fr;
+  }
+}
+
+.feature-box {
+  padding: 2rem;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: transform 0.4s ease;
+}
+
+.feature-box:hover {
+  transform: translateY(-6px);
+}
+
+.feature-box span {
+  font-size: 2rem;
+}
+
+.feature-box h4 {
+  margin-top: 1rem;
+}
+
+/* CTA */
+.solutions-cta {
+  margin-top: 8rem;
+  padding: 6rem 0;
+  background: radial-gradient(circle at top, rgba(255,255,255,0.08), transparent 70%);
+  text-align: center;
+}
+
+.solutions-cta h2 {
+  font-size: clamp(2rem, 4vw, 2.6rem);
+}
+
+.solutions-cta p {
+  color: var(--muted);
+  margin-top: 0.8rem;
+}
+
+.solutions-cta a {
+  display: inline-block;
+  margin-top: 1.8rem;
+  padding: 0.9rem 2.4rem;
+  background: white;
+  color: black;
+  border-radius: 999px;
+  font-weight: 600;
+}

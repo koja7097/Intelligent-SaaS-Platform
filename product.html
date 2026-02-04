@@ -12,12 +12,19 @@
 <header class="nav">
   <div class="container nav-inner">
     <div class="logo">HOVA</div>
-    <nav>
+
+    <nav class="nav-links">
       <a href="index.html">Home</a>
       <a href="product.html" class="active">Product</a>
       <a href="pricing.html">Pricing</a>
       <a href="#" class="btn-sm">Request demo</a>
     </nav>
+
+    <button class="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 </header>
 
@@ -199,5 +206,17 @@
 <script src="js/three-bg.js"></script>
 <script src="js/reveal.js"></script>
 <script src="js/gsap-animations.js"></script>
+
+<script>
+  const hamburger = document.querySelector('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
+
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('open');
+    });
+  }
+</script>
 </body>
 </html>

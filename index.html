@@ -28,12 +28,19 @@
 <header class="nav">
   <div class="container nav-inner">
     <div class="logo">HOVA</div>
-    <nav>
+
+    <nav class="nav-links">
       <a href="product.html">Product</a>
       <a href="solutions.html">Solutions</a>
       <a href="pricing.html">Pricing</a>
       <a href="#" class="btn-sm">Request demo</a>
     </nav>
+
+    <button class="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 </header>
 
@@ -198,6 +205,16 @@ document.addEventListener("DOMContentLoaded", () => {
     duration: 1
   });
 });
+</script>
+
+<script>
+  const hamburger = document.querySelector('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('open');
+  });
 </script>
 
 </body>
