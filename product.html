@@ -210,13 +210,32 @@
 <script>
   const hamburger = document.querySelector('.hamburger');
   const navLinks = document.querySelector('.nav-links');
+  const body = document.body;
 
-  if (hamburger && navLinks) {
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      navLinks.classList.toggle('open');
-    });
+  function closeMenu() {
+    hamburger.classList.remove('active');
+    navLinks.classList.remove('open');
+    body.classList.remove('menu-open');
   }
+
+  hamburger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('open');
+    body.classList.toggle('menu-open');
+  });
+
+  // Prevent clicks inside menu from closing it
+  navLinks.addEventListener('click', (e) => {
+    e.stopPropagation();
+  });
+
+  // Click anywhere else closes the menu
+  document.addEventListener('click', () => {
+    if (navLinks.classList.contains('open')) {
+      closeMenu();
+    }
+  });
 </script>
 </body>
 </html>
