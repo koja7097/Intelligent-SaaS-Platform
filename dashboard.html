@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>HOVA Dashboard</title>
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+
+<!-- Three.js background -->
+<canvas id="bg"></canvas>
+
+<div class="app">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">HOVA</div>
+
+    <nav>
+      <a class="active">Dashboard</a>
+      <a>Analytics</a>
+      <a>Alerts</a>
+      <a>AI Insights</a>
+      <a>Settings</a>
+    </nav>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+
+    <header class="topbar">
+      <h1>System Overview</h1>
+      <div class="status operational" id="status">Operational</div>
+    </header>
+
+    <!-- KPI Cards -->
+    <section class="cards">
+      <div class="card glow">
+        <h4>Active Users</h4>
+        <p id="users">—</p>
+        <span class="trend up">▲ 4.3%</span>
+      </div>
+
+      <div class="card">
+        <h4>Error Rate</h4>
+        <p id="errors">—%</p>
+        <span class="trend down">▼ 1.1%</span>
+      </div>
+
+      <div class="card">
+        <h4>Latency</h4>
+        <p id="latency">— ms</p>
+        <span class="trend stable">● stable</span>
+      </div>
+
+      <div class="card">
+        <h4>Uptime</h4>
+        <p>99.98%</p>
+      </div>
+    </section>
+
+    <!-- Main Grid -->
+    <section class="grid">
+
+      <div class="panel">
+        <h3>Recent Activity</h3>
+        <ul id="activity"></ul>
+      </div>
+
+      <div class="panel">
+        <h3>Active Alerts</h3>
+        <ul id="alerts"></ul>
+      </div>
+
+      <div class="panel ai">
+        <h3>AI System Insight</h3>
+        <p id="ai"></p>
+      </div>
+
+    </section>
+
+  </main>
+</div>
+
+<script type="module" src="js/dash-three-bg.js"></script>
+<script type="module" src="js/dashboard.js"></script>
+
+</body>
+</html>
