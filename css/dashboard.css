@@ -133,3 +133,66 @@ body {
   padding: 10px 0;
   border-bottom: 1px solid rgba(255,255,255,0.05);
 }
+
+#bg {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+}
+
+#view-container {
+  min-height: 100vh;
+  animation: fadeIn 0.4s ease;
+}
+
+.sidebar nav a {
+  cursor: pointer;
+}
+
+/* analytics */
+
+.analytics {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.analytics-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filters {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.filter {
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.08);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.filter.active,
+.filter:hover {
+  background: #4fd1c5;
+  color: #000;
+}
+
+.analytics-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.charts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
