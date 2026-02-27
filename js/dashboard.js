@@ -29,7 +29,7 @@ links.forEach(link => {
 // ----------------- DASHBOARD -----------------
 function initDashboard() {
   const users = document.getElementById("users");
-  const errors = document.getElementById("errors");
+  const errors =  document.getElementById("errors");
   const latency = document.getElementById("latency");
   const activity = document.getElementById("activity");
   const alerts = document.getElementById("alerts");
@@ -41,53 +41,197 @@ function initDashboard() {
     latency.textContent = Math.floor(90 + Math.random() * 40) + " ms";
   }, 2000);
 
-  function drawSparkline(id, data) {
+document.addEventListener("DOMContentLoaded",()=>{
+
+  // ----------------- KPI SPARKLINES & ANIMATION -----------------
+function drawSparkline(id, data, color = 'var(--primary)') {
   const ctx = document.getElementById(id).getContext('2d');
-  new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: data.map((_, i) => i),
-      datasets: [{
-        data,
-        borderColor: '#4fd1c5',
-        backgroundColor: 'rgba(79, 209, 197,0.2)',
-        tension: 0.3,
-        fill: true,
-        pointRadius: 0
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: { legend: { display: false } },
-      scales: { x:{display:false}, y:{display:false} }
+  if (window[id + 'Chart']) {
+    window[id + 'Chart'].data.datasets[0].data = data;
+    window[id + 'Chart'].update();
+  } else {
+    window[id + 'Chart'] = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: data.map((_, i) => i),
+        datasets: [{
+          data,
+          borderColor: color,
+          backgroundColor: 'rgba(108,124,255,0.2)',
+          tension: 0.3,
+          fill: true,
+          pointRadius: 0
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: { x:{display:false}, y:{display:false} },
+        animation: { duration: 800, easing: 'easeOutQuart' }
+      }
+    });
+  }
+}
+
+  function animateValue(id,start,end,duration){
+    const obj=document.getElementById(id);
+    let startTimestamp=null;
+    const step=(timestamp)=>{
+      if(!startTimestamp) startTimestamp=timestamp;
+      const progress=Math.min((timestamp-startTimestamp)/duration,1);
+      obj.textContent=Math.floor(progress*(end-start)+start);
+      if(progress<1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  setInterval(()=>{
+    const usersData=Array.from({length:12},()=>Math.floor(200+Math.random()*50));
+    drawSparkline('usersSparkline',usersData);
+    animateValue('users',0,usersData[usersData.length-1],1000);
+
+    const errorsData=Array.from({length:12},()=>parseFloat((Math.random()*0.2).toFixed(2)));
+    drawSparkline('errorsSparkline',errorsData);
+    animateValue('errors',0,errorsData[errorsData.length-1]*100,1000);
+
+    const latencyData=Array.from({length:12},()=>Math.floor(90+Math.random()*40));
+    drawSparkline('latencySparkline',latencyData);
+    animateValue('latency',0,latencyData[latencyData.length-1],1000);
+  },2000);
+
+  // ----------------- ACTIVITY FILTER & SEARCH -----------------
+  const activityList=[
+    { type:"login", text:"User logged in" },
+    { type:"api", text:"API request processed" },
+    { type:"db", text:"Database synced" },
+    { type:"login", text:"Admin logged in" }
+  ];
+  const activityUl=document.getElementById("activity");
+
+  function renderActivity(filter="all"){
+    activityUl.innerHTML="";
+    activityList.filter(a=>filter==="all"||a.type===filter).forEach(a=>{
+      const li=document.createElement("li");
+      li.textContent=a.text;
+      activityUl.appendChild(li);
+    });
+  }
+  renderActivity();
+
+  document.querySelectorAll(".filter").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));
+      btn.classList.add("active");
+      renderActivity(btn.dataset.type);
+    });
+  });
+
+  document.getElementById("activitySearch").addEventListener("input",e=>{
+    const query=e.target.value.toLowerCase();
+    document.querySelectorAll("#activity li").forEach(li=>{
+      li.style.display=li.textContent.toLowerCase().includes(query)?"":"none";
+    });
+  });
+
+  // ----------------- ALERTS -----------------
+  const alertsUl=document.getElementById('alerts');
+  const alertTypes=[
+    {type:'warning',text:'High CPU Usage'},
+    {type:'error',text:'Server Down'},
+    {type:'success',text:'Deployment Successful'}
+  ];
+
+  function showToast(msg,type='info'){
+    const toast=document.createElement('div');
+    toast.className=`toast ${type}`;
+    toast.textContent=msg;
+    document.body.appendChild(toast);
+    setTimeout(()=>toast.remove(),3000);
+  }
+
+  setInterval(()=>{
+    const alert=alertTypes[Math.floor(Math.random()*alertTypes.length)];
+    const li=document.createElement('li');
+    li.className=`alert-item ${alert.type}`;
+    li.innerHTML=`${alert.text} <span class="timestamp">${new Date().toLocaleTimeString()}</span>`;
+    alertsUl.prepend(li);
+    if(alertsUl.children.length>10) alertsUl.removeChild(alertsUl.lastChild);
+    showToast(`New Alert: ${alert.text}`,alert.type);
+  },5000);
+
+  // ----------------- AI INSIGHTS -----------------
+  document.querySelectorAll(".aiSuggestBtn").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const action=btn.textContent;
+      document.getElementById("ai").textContent=`AI recommends: ${action}`;
+      showToast(`Applied AI Suggestion: ${action}`,'success');
+    });
+
+const kpiCards = ['users', 'errors', 'latency'];
+
+kpiCards.forEach(id => {
+  const card = document.getElementById(id).closest('.card');
+
+  // Tooltip container
+  const tooltip = document.createElement('div');
+  tooltip.className = 'kpi-tooltip';
+  tooltip.style.display = 'none';
+  card.appendChild(tooltip);
+
+  // Tooltip content
+  tooltip.innerHTML = `
+    <div class="tooltip-header">
+      <strong id="${id}-tooltip-title">${id.toUpperCase()}</strong>
+      <span id="${id}-tooltip-change" class="tooltip-change">+0%</span>
+    </div>
+    <canvas id="${id}-tooltip-chart" height="40"></canvas>
+  `;
+
+  card.addEventListener('mouseenter', () => {
+    tooltip.style.display = 'block';
+    tooltip.style.opacity = 0;
+    tooltip.style.transform = 'translateY(-10px)';
+    setTimeout(() => {
+      tooltip.style.opacity = 1;
+      tooltip.style.transform = 'translateY(0)';
+    }, 10);
+
+    // Random data for demo
+    const data = Array.from({ length: 24 }, () => Math.floor(Math.random() * 50) + 50);
+
+    // Draw mini sparkline
+    drawSparkline(`${id}-tooltip-chart`, data, '#6c7cff');
+
+    // Show percentage change
+    const change = ((data[data.length-1] - data[0]) / data[0] * 100).toFixed(1);
+    const changeEl = document.getElementById(`${id}-tooltip-change`);
+    changeEl.textContent = `${change > 0 ? '+' : ''}${change}%`;
+    changeEl.style.color = change >= 0 ? '#22c55e' : '#ef4444';
+  });
+
+  card.addEventListener('mouseleave', () => {
+    tooltip.style.opacity = 0;
+    tooltip.style.transform = 'translateY(-10px)';
+    setTimeout(() => tooltip.style.display = 'none', 300);
+  });
+});
+
+  });
+
+  // ----------------- DRAGGABLE PANELS -----------------
+  const grid=document.getElementById("dashboardGrid");
+  let dragged;
+  grid.addEventListener("dragstart",e=>dragged=e.target);
+  grid.addEventListener("dragover",e=>e.preventDefault());
+  grid.addEventListener("drop",e=>{
+    e.preventDefault();
+    if(e.target.classList.contains("panel") && e.target!==dragged){
+      const panels=Array.from(grid.children);
+      const dropIndex=panels.indexOf(e.target);
+      grid.insertBefore(dragged,panels[dropIndex]);
     }
   });
-}
-
-// Example: call inside your setInterval to update every 2s
-setInterval(() => {
-  const userData = Array.from({length:12}, ()=>Math.floor(200 + Math.random()*50));
-  drawSparkline('usersSparkline', userData);
-
-  const errorData = Array.from({length:12}, ()=>parseFloat((Math.random()*0.2).toFixed(2)));
-  drawSparkline('errorsSparkline', errorData);
-
-  const latencyData = Array.from({length:12}, ()=>Math.floor(90 + Math.random()*40));
-  drawSparkline('latencySparkline', latencyData);
-}, 2000);
-
-
-function animateValue(id, start, end, duration) {
-  const obj = document.getElementById(id);
-  let startTimestamp = null;
-  const step = (timestamp) => {
-    if (!startTimestamp) startTimestamp = timestamp;
-    const progress = Math.min((timestamp - startTimestamp)/duration, 1);
-    obj.textContent = Math.floor(progress*(end-start)+start);
-    if (progress < 1) window.requestAnimationFrame(step);
-  };
-  window.requestAnimationFrame(step);
-}
+});
 
 // Call this when loading KPIs
 animateValue('users', 0, Math.floor(200 + Math.random()*50), 1000);

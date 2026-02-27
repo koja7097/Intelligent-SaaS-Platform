@@ -5,48 +5,64 @@ export const views = {
       <div class="status operational">Operational</div>
     </header>
 
-    <section class="cards">
-      <div class="card glow">
-        <h4>Active Users</h4>
-        <p id="users">0</p>
-          <canvas id="usersSparkline" height="30"></canvas>
-        <span class="trend up">▲ 4.3%</span>
-      </div>
-
-      <div class="card">
-        <h4>Error Rate</h4>
-        <p id="errors">0.00%</p>
-          <canvas id="errorsSparkline" height="30"></canvas>
-        <span class="trend down">▼ 1.1%</span>
-      </div>
-
-      <div class="card">
-        <h4>Latency</h4>
-        <p id="latency">0 ms</p>
-          <canvas id="latencySparkline" height="30"></canvas>
-        <span class="trend stable">● stable</span>
-      </div>
-
-      <div class="card">
-        <h4>Uptime</h4>
-        <p>99.98%</p>
-      </div>
-    </section>
-
-  <section class="grid" id="dashboardGrid">
-  <div class="panel" draggable="true" id="panelActivity">
-    <h3>Recent Activity</h3>
-    <ul id="activity"></ul>
+<section class="main-overview">
+  <!-- KPI Cards -->
+  <div class="cards">
+    <div class="card glow">
+      <h4>Active Users</h4>
+      <p id="users">0</p>
+      <canvas id="usersSparkline" height="30"></canvas>
+      <span class="trend up">▲ 4.3%</span>
+    </div>
+    <div class="card glow">
+      <h4>Error Rate</h4>
+      <p id="errors">0</p>
+      <canvas id="errorsSparkline" height="30"></canvas>
+      <span class="trend down">▼ 0.1%</span>
+    </div>
+    <div class="card glow">
+      <h4>Latency (ms)</h4>
+      <p id="latency">0</p>
+      <canvas id="latencySparkline" height="30"></canvas>
+      <span class="trend up">▲ 12%</span>
+    </div>
   </div>
 
-  <div class="panel" draggable="true" id="panelAlerts">
-    <h3>Active Alerts</h3>
-    <ul id="alerts"></ul>
-  </div>
+  <!-- Dashboard Panels -->
+  <div class="grid" id="dashboardGrid">
+    <!-- Recent Activity -->
+    <div class="panel" draggable="true" id="panelActivity">
+      <h3>Recent Activity</h3>
+      <div class="analytics-header">
+        <input type="text" id="activitySearch" placeholder="Search activity..." style="width:100%;padding:6px 10px;border-radius:8px;border:none;background:rgba(255,255,255,0.05);color:#fff;margin-bottom:10px;">
+      </div>
+      <div class="filters">
+        <button class="filter active" data-type="all">All</button>
+        <button class="filter" data-type="login">Login</button>
+        <button class="filter" data-type="api">API</button>
+        <button class="filter" data-type="db">Database</button>
+      </div>
+      <ul id="activity"></ul>
+    </div>
 
-  <div class="panel ai" draggable="true" id="panelAI">
-    <h3>AI System Insight</h3>
-    <p id="ai"></p>
+    <!-- Alerts -->
+    <div class="panel" draggable="true" id="panelAlerts">
+      <h3>Active Alerts</h3>
+      <div class="alerts-panel">
+        <ul id="alerts" class="alert-list"></ul>
+      </div>
+    </div>
+
+    <!-- AI Insights -->
+    <div class="panel ai" draggable="true" id="panelAI">
+      <h3>AI System Insight</h3>
+      <p id="ai">Awaiting insights...</p>
+      <div class="ai-cards">
+        <button class="aiSuggestBtn glow" style="background: var(--primary);color:#fff;">Scale Resources</button>
+        <button class="aiSuggestBtn glow" style="background: var(--primary);color:#fff;">Monitor Closely</button>
+        <button class="aiSuggestBtn glow" style="background: var(--primary);color:#fff;">Immediate Action</button>
+      </div>
+    </div>
   </div>
 </section>
   `,

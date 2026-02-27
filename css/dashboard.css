@@ -177,6 +177,7 @@ body {
   align-items: center;
 }
 
+ 
 .status {
   padding: 6px 14px;
   border-radius: 999px;
@@ -199,6 +200,11 @@ body {
   padding: 20px;
   border-radius: 16px;
   position: relative;
+}
+
+.panel {
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  overflow: hidden;
 }
 
 .card p {
@@ -350,6 +356,49 @@ body {
   gap: 0.5rem;
   padding: 0;
   margin: 0;
+  max-height: 180px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(108, 124, 255, 0.3) transparent;
+}
+
+.alert-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.alert-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+.alert-list::-webkit-scrollbar-thumb {
+  background-color: rgba(108, 124, 255, 0.3);
+  border-radius: 3px;
+}
+
+.kpi-tooltip {
+  position: absolute;
+  top: -80px;
+  left: 10px;
+  width: 160px;
+  background: rgba(18,23,42,0.95);
+  color: #fff;
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.kpi-tooltip .tooltip-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.kpi-tooltip .tooltip-change {
+  font-weight: 600;
 }
 
 /* Individual Alert Card */
