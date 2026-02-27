@@ -1,73 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>HOVA Solutions</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/product.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HOVA | Solutions</title>
+<link rel="stylesheet" href="css/solutions.css">
 </head>
 <body>
 
-<header class="nav">
-  <div class="container nav-inner">
-    <div class="logo">HOVA</div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="solutions.html" class="active">Solutions</a>
-      <a href="product.html">Product</a>
-      <a href="pricing.html">Pricing</a>
-    </nav>
-  </div>
-</header>
+<canvas id="bg"></canvas>
 
-<section class="solutions-hero container">
-  <h1 class="reveal">Solutions for every scale</h1>
-  <p class="subtitle reveal">
-    Whether you're a startup or an enterprise, NOVA adapts.
+<!-- HERO -->
+<section class="hero">
+  <h1>Operate Smarter. Predict Faster. Scale Without Limits.</h1>
+  <p>
+    HOVA empowers modern SaaS teams with predictive intelligence, automated infrastructure response,
+    and unified operational visibility — so you stay ahead of issues before they impact your users.
   </p>
-</section>
 
-<section class="solutions-grid container">
-  <div class="solution-card reveal">
-    <h3>Startups</h3>
-    <p>Launch fast with full visibility from day one.</p>
-    <ul>
-      <li>✔ Fast setup</li>
-      <li>✔ Low overhead</li>
-      <li>✔ Scales as you grow</li>
-    </ul>
-  </div>
-
-  <div class="solution-card reveal">
-    <h3>Scaleups</h3>
-    <p>Control complexity as teams and systems expand.</p>
-    <ul>
-      <li>✔ Multi-team monitoring</li>
-      <li>✔ Advanced automation</li>
-      <li>✔ Predictive alerts</li>
-    </ul>
-  </div>
-
-  <div class="solution-card reveal">
-    <h3>Enterprises</h3>
-    <p>Mission-critical reliability with compliance built in.</p>
-    <ul>
-      <li>✔ SLA guarantees</li>
-      <li>✔ Audit logs</li>
-      <li>✔ Dedicated support</li>
-    </ul>
+  <div class="buttons">
+    <button class="primary">Start Free Trial</button>
+    <button class="secondary">Request Enterprise Demo</button>
   </div>
 </section>
 
-<footer class="footer">
-  <div class="container footer-inner">
-    <span>© 2026 HOVA Inc.</span>
-    <span>Privacy · Security · Terms</span>
-  </div>
-</footer>
+<!-- AI INTELLIGENCE LAYER -->
+<section class="ai-layer reveal">
+  <h2>The HOVA Intelligence Layer</h2>
+  <p class="section-sub">
+    At the core of HOVA is a predictive engine that continuously analyzes system signals,
+    detects anomalies, and triggers automated workflows in milliseconds.
+  </p>
 
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<script src="js/reveal.js"></script>
+  <div class="ai-grid">
+    <div class="ai-card">
+      <h3>Signal Aggregation</h3>
+      <p>Collect logs, metrics, user events, and infrastructure signals into one unified stream.</p>
+    </div>
+
+    <div class="ai-card">
+      <h3>Anomaly Detection</h3>
+      <p>Behavioral pattern modeling identifies unusual spikes before outages occur.</p>
+    </div>
+
+    <div class="ai-card">
+      <h3>Automated Orchestration</h3>
+      <p>Trigger scaling, rollback deployments, or alert teams instantly — without manual action.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE EVENT STREAM -->
+<section class="event-stream reveal">
+  <h2>Real-Time Operational Awareness</h2>
+
+  <div class="terminal">
+    <div class="log" id="logs"></div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE FLOW -->
+<section class="architecture reveal">
+  <h2>Built for Scalable Infrastructure</h2>
+
+  <div class="flow">
+    <div class="node">Monitor</div>
+    <div class="arrow">→</div>
+    <div class="node">Analyze</div>
+    <div class="arrow">→</div>
+    <div class="node">Automate</div>
+    <div class="arrow">→</div>
+    <div class="node">Scale</div>
+  </div>
+</section>
+
+<!-- ENTERPRISE CAPABILITIES -->
+<section class="enterprise reveal">
+  <h2>Enterprise-Grade Capabilities</h2>
+
+  <div class="grid">
+    <div class="card">Multi-Region Observability</div>
+    <div class="card">Advanced SLA Reporting</div>
+    <div class="card">Role-Based Access Control</div>
+    <div class="card">Infrastructure Auto-Healing</div>
+    <div class="card">Cross-Platform Integrations</div>
+    <div class="card">Compliance & Audit Logs</div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <h2>Future-Proof Your SaaS Operations</h2>
+  <p>HOVA transforms operational complexity into automated intelligence.</p>
+  <button class="primary">Get Started Today</button>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script src="js/solutions.js"></script>
+
 </body>
 </html>

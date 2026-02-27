@@ -750,3 +750,21 @@ body.dark-mode .settings-card {
     align-items: center;
   }
 }
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #4fd1c5;
+  color: #111;
+  padding: 0.8rem 1.2rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  opacity: 0.95;
+  font-weight: 500;
+  z-index: 9999;
+}
+
+.toast.warning { background: #facc15; }
+.toast.error { background: #f87171; }
+.toast.success { background: #22c55e; }

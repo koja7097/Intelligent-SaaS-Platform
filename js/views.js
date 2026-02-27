@@ -9,18 +9,21 @@ export const views = {
       <div class="card glow">
         <h4>Active Users</h4>
         <p id="users">0</p>
+          <canvas id="usersSparkline" height="30"></canvas>
         <span class="trend up">▲ 4.3%</span>
       </div>
 
       <div class="card">
         <h4>Error Rate</h4>
         <p id="errors">0.00%</p>
+          <canvas id="errorsSparkline" height="30"></canvas>
         <span class="trend down">▼ 1.1%</span>
       </div>
 
       <div class="card">
         <h4>Latency</h4>
         <p id="latency">0 ms</p>
+          <canvas id="latencySparkline" height="30"></canvas>
         <span class="trend stable">● stable</span>
       </div>
 
@@ -30,22 +33,22 @@ export const views = {
       </div>
     </section>
 
-    <section class="grid">
-      <div class="panel">
-        <h3>Recent Activity</h3>
-        <ul id="activity"></ul>
-      </div>
+  <section class="grid" id="dashboardGrid">
+  <div class="panel" draggable="true" id="panelActivity">
+    <h3>Recent Activity</h3>
+    <ul id="activity"></ul>
+  </div>
 
-      <div class="panel">
-        <h3>Active Alerts</h3>
-        <ul id="alerts"></ul>
-      </div>
+  <div class="panel" draggable="true" id="panelAlerts">
+    <h3>Active Alerts</h3>
+    <ul id="alerts"></ul>
+  </div>
 
-      <div class="panel ai">
-        <h3>AI System Insight</h3>
-        <p id="ai"></p>
-      </div>
-    </section>
+  <div class="panel ai" draggable="true" id="panelAI">
+    <h3>AI System Insight</h3>
+    <p id="ai"></p>
+  </div>
+</section>
   `,
 
 analytics: () => `

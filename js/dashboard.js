@@ -41,6 +41,59 @@ function initDashboard() {
     latency.textContent = Math.floor(90 + Math.random() * 40) + " ms";
   }, 2000);
 
+  function drawSparkline(id, data) {
+  const ctx = document.getElementById(id).getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: data.map((_, i) => i),
+      datasets: [{
+        data,
+        borderColor: '#4fd1c5',
+        backgroundColor: 'rgba(79, 209, 197,0.2)',
+        tension: 0.3,
+        fill: true,
+        pointRadius: 0
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: { x:{display:false}, y:{display:false} }
+    }
+  });
+}
+
+// Example: call inside your setInterval to update every 2s
+setInterval(() => {
+  const userData = Array.from({length:12}, ()=>Math.floor(200 + Math.random()*50));
+  drawSparkline('usersSparkline', userData);
+
+  const errorData = Array.from({length:12}, ()=>parseFloat((Math.random()*0.2).toFixed(2)));
+  drawSparkline('errorsSparkline', errorData);
+
+  const latencyData = Array.from({length:12}, ()=>Math.floor(90 + Math.random()*40));
+  drawSparkline('latencySparkline', latencyData);
+}, 2000);
+
+
+function animateValue(id, start, end, duration) {
+  const obj = document.getElementById(id);
+  let startTimestamp = null;
+  const step = (timestamp) => {
+    if (!startTimestamp) startTimestamp = timestamp;
+    const progress = Math.min((timestamp - startTimestamp)/duration, 1);
+    obj.textContent = Math.floor(progress*(end-start)+start);
+    if (progress < 1) window.requestAnimationFrame(step);
+  };
+  window.requestAnimationFrame(step);
+}
+
+// Call this when loading KPIs
+animateValue('users', 0, Math.floor(200 + Math.random()*50), 1000);
+animateValue('errors', 0, parseFloat((Math.random()*0.2).toFixed(2)), 1000);
+animateValue('latency', 0, Math.floor(90 + Math.random()*40), 1000);
+
   activity.innerHTML = `
     <li>User logged in</li>
     <li>API request processed</li>
@@ -132,6 +185,8 @@ function initAlerts() {
     renderAlerts(activeFilter);
   }, 5000);
 }
+
+
 
 
 //AI INSIGHT SECTION=======//
@@ -402,7 +457,6 @@ function drawBarChart() {
     );
   }
 }
-
 
 
 // ----------------- INITIAL LOAD -----------------
